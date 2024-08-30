@@ -115,6 +115,7 @@ public class Workflowsdb {
         for (Map.Entry<Integer, String> entry : outputData.entrySet()) {
             outputID.setWorkflowID(workflowId);
             outputID.setProcessor(entry.getValue());
+            outputID.setPath("Test");
             output.setOutputID(outputID);
             output.setType(DataType.String);
 

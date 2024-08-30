@@ -34,24 +34,24 @@
       <url>http://www.creatis.insa-lyon.fr/</url>
    </organization>
    <dependencies>
-      <!--  <dependency>
-            <groupId>com.github.sandepat</groupId>
-            <artifactId>GASW</artifactId>
-            <version>377851c196</version>
-        </dependency>
+      <!--          <dependency>
+         <groupId>com.github.sandepat</groupId>
+         <artifactId>GASW</artifactId>
+         <version>a484c983f5</version>
+     </dependency>
 
         <dependency>
             <groupId>fr.insalyon.creatis</groupId>
             <artifactId>gasw</artifactId>
             <version>3.10.0-SNAPSHOT</version>
             <scope>system</scope>
-            <systemPath>/mnt/c/Users/patil/projects/MoteurLite/Java_Packages_for_MoteurLite/MoteurLite/ZONE/GASW/target/gasw-3.10.0-SNAPSHOT-jar-with-dependencies.jar</systemPath>
+            <systemPath>/mnt/c/Users/patil/projects/MoteurLite_APLHA/Compatible-ML-M2/GASW-compatible-ML-M2/GASW/target/gasw-3.10.0-SNAPSHOT-jar-with-dependencies.jar</systemPath>
         </dependency>-->
-      <dependency>
+        <dependency>
          <groupId>com.github.sandepat</groupId>
          <artifactId>GASW</artifactId>
-         <version>a497bbd801</version>
-      </dependency>
+         <version>248abc3250</version>
+     </dependency>
       <dependency>
          <groupId>com.googlecode.json-simple</groupId>
          <artifactId>json-simple</artifactId>

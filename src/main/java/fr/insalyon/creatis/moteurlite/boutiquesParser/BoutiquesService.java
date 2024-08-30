@@ -15,24 +15,12 @@ import fr.insalyon.creatis.gasw.GaswException;
 
 /**
  * 
- * @author Sandesh Patil [https://github.com/sandepat]
+ * Author: Sandesh Patil [https://github.com/sandepat]
  * 
  */
 
 public class BoutiquesService {
-    private String nameOfBoutiquesFile;
-    private String applicationName;
-    private HashMap<Integer, String> inputIdOfBoutiquesFile;
-    private HashMap<Integer, String> outputIdOfBoutiquesFile;
-    private HashMap<String, String> inputTypeOfBoutiquesFile;
-    private HashMap<String, String> inputValueKeyOfBoutiquesFile;
-    private HashMap<String, String> outputPathTemplateOfBoutiquesFile;
-    private Set<String> crossMap;
-    private Set<String> dotMap;
-    private Set<String> inputOptionalOfBoutiquesFile;
-
     public BoutiquesService() {
-        // Default constructor
     }
 
     public BoutiquesEntities parseFile(String boutiquesDescriptorString) throws FileNotFoundException, IOException,
@@ -41,59 +29,47 @@ public class BoutiquesService {
         String objeString = String.valueOf(object);
 
         ObjectMapper objectMapper = new ObjectMapper();
-        BoutiquesEntities boutiquesEntities = objectMapper.readValue(objeString, BoutiquesEntities.class);
-        
-        this.nameOfBoutiquesFile = boutiquesEntities.getName() + ".json";
-        this.applicationName = nameOfBoutiquesFile.substring(0, nameOfBoutiquesFile.lastIndexOf('.'));
-        this.inputIdOfBoutiquesFile = boutiquesEntities.getInputId();
-        this.outputIdOfBoutiquesFile = boutiquesEntities.getOutputId();
-        this.crossMap = boutiquesEntities.getCrossMap();
-        this.dotMap = boutiquesEntities.getDotMap();
-        this.inputTypeOfBoutiquesFile = boutiquesEntities.getInputTypes();
-        this.inputValueKeyOfBoutiquesFile = boutiquesEntities.getInputValueKey();
-        this.inputOptionalOfBoutiquesFile = boutiquesEntities.getInputOptional();
-        this.outputPathTemplateOfBoutiquesFile = boutiquesEntities.getOutputPathTemplateList();
-
-        return boutiquesEntities;
+        return objectMapper.readValue(objeString, BoutiquesEntities.class);
     }
 
-    public String getNameOfBoutiquesFile() {
-        return nameOfBoutiquesFile;
+    public String getNameOfBoutiquesFile(BoutiquesEntities boutiquesEntities) {
+        return boutiquesEntities.getName() + ".json";
     }
 
-    public String getApplicationName() {
-        return applicationName;
+    public String getApplicationName(BoutiquesEntities boutiquesEntities) {
+        String nameOfBoutiquesFile = getNameOfBoutiquesFile(boutiquesEntities);
+        return nameOfBoutiquesFile.substring(0, nameOfBoutiquesFile.lastIndexOf('.'));
     }
 
-    public HashMap<Integer, String> getInputIdOfBoutiquesFile() {
-        return inputIdOfBoutiquesFile;
+    public HashMap<Integer, String> getInputIdOfBoutiquesFile(BoutiquesEntities boutiquesEntities) {
+        return boutiquesEntities.getInputId();
     }
 
-    public HashMap<Integer, String> getOutputIdOfBoutiquesFile() {
-        return outputIdOfBoutiquesFile;
+    public HashMap<Integer, String> getOutputIdOfBoutiquesFile(BoutiquesEntities boutiquesEntities) {
+        return boutiquesEntities.getOutputId();
     }
 
-    public HashMap<String, String> getInputTypeOfBoutiquesFile() {
-        return inputTypeOfBoutiquesFile;
+    public HashMap<String, String> getInputTypeOfBoutiquesFile(BoutiquesEntities boutiquesEntities) {
+        return boutiquesEntities.getInputTypes();
     }
 
-    public HashMap<String, String> getInputValueKeyOfBoutiquesFile() {
-        return inputValueKeyOfBoutiquesFile;
+    public HashMap<String, String> getInputValueKeyOfBoutiquesFile(BoutiquesEntities boutiquesEntities) {
+        return boutiquesEntities.getInputValueKey();
     }
 
-    public Set<String> getInputOptionalOfBoutiquesFile() {
-        return inputOptionalOfBoutiquesFile;
+    public Set<String> getInputOptionalOfBoutiquesFile(BoutiquesEntities boutiquesEntities) {
+        return boutiquesEntities.getInputOptional();
     }
 
-    public HashMap<String, String> getOutputPathTemplateOfBoutiquesFile() {
-        return outputPathTemplateOfBoutiquesFile;
+    public HashMap<String, String> getOutputPathTemplateOfBoutiquesFile(BoutiquesEntities boutiquesEntities) {
+        return boutiquesEntities.getOutputPathTemplateList();
     }
 
-    public Set<String> getCrossMap() {
-        return crossMap;
+    public Set<String> getCrossMap(BoutiquesEntities boutiquesEntities) {
+        return boutiquesEntities.getCrossMap();
     }
 
-    public Set<String> getDotMap() {
-        return dotMap;
+    public Set<String> getDotMap(BoutiquesEntities boutiquesEntities) {
+        return boutiquesEntities.getDotMap(); //call this in moteurlite
     }
 }

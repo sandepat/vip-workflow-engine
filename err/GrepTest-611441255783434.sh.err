@@ -1,0 +1,63 @@
+cp: cannot stat 'GrepTest-611441255783434-configuration.sh': No such file or directory
+cp: cannot stat 'GrepTest-611441255783434-invocation.json': No such file or directory
+<header>
+</header>
+<host_config>
+/usr/bin/which: no lcg-cp in (/usr/lib/jvm/java-11-openjdk-11.0.18.0.10-1.fc36.x86_64/bin:/home/patil/.vscode-server/data/User/globalStorage/pleiades.java-extension-pack-jdk/gradle/latest/bin:/home/patil/.vscode-server/data/User/globalStorage/pleiades.java-extension-pack-jdk/maven/latest/bin:/usr/local/go/bin:/usr/local/go/bin:/usr/local/go/bin:/mnt/c/Users/patil/projects/appilications:/home/patil/.vscode-server/bin/5437499feb04f7a586f677b155b039bc2b3669eb/bin/remote-cli:/usr/local/go/bin:/usr/local/go/bin:/usr/local/go/bin:/mnt/c/Users/patil/projects/appilications:/home/patil/.local/bin:/home/patil/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files/Common Files/Oracle/Java/javapath:/mnt/c/Program Files/Java/jdk-11/bin:/mnt/c/Program Files/Eclipse Adoptium/jdk-17.0.7.7-hotspot/bin:/mnt/c/Program Files/ImageMagick:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Program Files/Calibre2/:/mnt/c/Program Files/dotnet/:/mnt/c/Program Files/MATLAB/R2022b/runtime/win64:/mnt/c/Program Files/MATLAB/R2022b/bin:/mnt/c/Program Files/TortoiseGit/bin:/mnt/c/Program Files (x86)/gs/gs9.56.1/bin:/mnt/c/Program Files/gs/gs9.56.1/bin:/mnt/c/Program Files (x86)/gs/gs10.00.0/bin:/mnt/c/Program Files/gs/gs10.00.0/bin:/mnt/c/Program Files (x86)/WinSCP/:/mnt/c/Program Files/PuTTY/:/mnt/c/Program Files/MiKTeX/miktex/bin/x64/:/mnt/c/Program Files/CMake/bin:/mnt/c/Program Files/Microsoft VS Code/bin:/mnt/c/Program Files/Docker/Docker/resources/bin:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Users/patil/AppData/Local/Programs/Python/Launcher:/mnt/c/Users/patil/AppData/Local/Programs/Python/Python312:/mnt/c/Windows/System32/wsl.exe:/mnt/c/Program Files/Git/cmd:/mnt/c/Users/patil/AppData/Local/Programs/Python/Python312/Scripts/:/mnt/c/Users/patil/AppData/Local/Programs/Python/Python312/:/mnt/c/Users/patil/AppData/Local/Programs/Python/Launcher/:/mnt/c/apache-maven-3.9.0/bin:/home/patil/go/bin:/home/patil/go/bin:/usr/local/go/bin:/home/patil/go/bin:/mnt/c/Users/patil/projects/MoteurLite_APLHA/GSOAP/gsoap-2.8:/home/patil/go/bin:/home/patil/go/bin:/usr/local/go/bin:/home/patil/go/bin:/mnt/c/Users/patil/projects/MoteurLite_APLHA/GSOAP/gsoap-2.8)
+mkdir: cannot create directory ‘/cache’: Permission denied
+</host_config>
+<background>
+awk: fatal: cannot open file `/cache/cache.txt' for reading: No such file or directory
+./sh/GrepTest-611441255783434.sh: line 311: dirac-dms-lfn-metadata: command not found
+basename: missing operand
+Try 'basename --help' for more information.
+rm: cannot remove '/home/patil/winhome/projects/MoteurLite_APLHA/vip-workflow-engine-develop/vip-workflow-engine/GrepTest-611441255783434/': Is a directory
+[ ERROR - Tue 27 Aug 14:52:00 CEST 2024 ] dirac-dms-get-file failed
+[ ERROR - Tue 27 Aug 14:52:00 CEST 2024 ] ./sh/GrepTest-611441255783434.sh: line 338: time: command not found
+</background>
+<inputs_download>
+basename: missing operand
+Try 'basename --help' for more information.
+</inputs_download>
+<application_environment>
+</application_environment>
+<application_execution>
+./sh/GrepTest-611441255783434.sh: line 891: /cvmfs/biomed.egi.eu/vip/virtualenv/bin/bosh: No such file or directory
+Error in sitecustomize; set PYTHONVERBOSE for traceback:
+AttributeError: module 'sys' has no attribute 'setdefaultencoding'
+Traceback (most recent call last):
+  File "/home/patil/.local/lib/python3.10/site-packages/boutiques/util/utils.py", line 59, in loadJson
+    return OrderedDict(json.loads(userInput,
+  File "/home/patil/.local/lib/python3.10/site-packages/simplejson/__init__.py", line 542, in loads
+    return cls(encoding=encoding, **kw).decode(s)
+  File "/home/patil/.local/lib/python3.10/site-packages/simplejson/decoder.py", line 372, in decode
+    obj, end = self.raw_decode(s)
+  File "/home/patil/.local/lib/python3.10/site-packages/simplejson/decoder.py", line 402, in raw_decode
+    return self.scan_once(s, idx=_w(s, idx).end())
+simplejson.errors.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/patil/.local/bin/bosh", line 8, in <module>
+    sys.exit(bosh())
+  File "/home/patil/.local/lib/python3.10/site-packages/boutiques/bosh.py", line 452, in bosh
+    out = execute(*params)
+  File "/home/patil/.local/lib/python3.10/site-packages/boutiques/bosh.py", line 92, in execute
+    valid = invocation(*arguments)
+  File "/home/patil/.local/lib/python3.10/site-packages/boutiques/bosh.py", line 254, in invocation
+    validate(*arguments)
+  File "/home/patil/.local/lib/python3.10/site-packages/boutiques/bosh.py", line 58, in validate
+    descriptor = loadJson(results.descriptor, sandbox=results.sandbox)
+  File "/home/patil/.local/lib/python3.10/site-packages/boutiques/util/utils.py", line 62, in loadJson
+    raise_error(LoadError, e)
+  File "/home/patil/.local/lib/python3.10/site-packages/boutiques/logger.py", line 9, in raise_error
+    raise error_class("[ ERROR ] {0}"
+boutiques.util.utils.LoadError: [ ERROR ] Cannot parse input ../workflow.json: file not found, invalid Zenodo ID, or invalid JSON object
+[ ERROR - Tue 27 Aug 14:52:02 CEST 2024 ] Exiting with return value 6
+</application_execution>
+<cleanup>
+ls: cannot access '/cache/cache.txt': No such file or directory
+cat: /cache/cache.txt: No such file or directory
+./sh/GrepTest-611441255783434.sh: line 100: kill: (7100) - No such process
+</cleanup>

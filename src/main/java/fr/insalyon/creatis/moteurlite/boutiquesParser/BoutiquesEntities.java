@@ -10,50 +10,48 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
 public class BoutiquesEntities {
-        private String author;
-        private String commandLine;
-        private ToolContainerImage containerImage;
-        //private ToolCustom custom;
-        private Map<String, Object> custom;
-        private ToolDeprecatedByDoi deprecatedByDoi;
-        private String description;
-        private String descriptorUrl;
-        private String doi;
-        private List<Map<String, Object>> environmentVariables;
-        private List<Map<String, Object>> errorCodes;
-        private List<Map<String, Object>> groups;
-        private List<Map<String, Object>> inputs;
-        private ToolInvocationSchema invocationSchema;
-        private String name;
-        private List<String> onlinePlatformUrls;
-        private List<Map<String, Object>> outputFiles;
-        private String schemaVersion;
-        private String shell;
-        private ToolSuggestedResources suggestedResources;
-        private ToolTags tags;
-        private List<Map<String, Object>> tests;
-        private String toolDoi;
-        private String toolVersion;
-        private String url;
-        Object inputId;
-        Object outputId;
-        Object inputType = new HashMap<>();
-        Object inputValueKey = new HashMap<>();
-        Object outputPathTemplate = new HashMap<>();
-        Object inputOptional = new HashMap<>();
+    private String author;
+    private String commandLine;
+    private String containerImage;
+    private String containerIndex;
+    private String containerType;
+    private String containerOpts;
+    //private ToolCustom custom;
+    private Map<String, Object> custom;
+    private String description;
+    private String descriptorUrl;
+    private String doi;
+    private List<Map<String, Object>> environmentVariables;
+    private List<Map<String, Object>> errorCodes;
+    private List<Map<String, Object>> groups;
+    private List<Map<String, Object>> inputs;
+    private String name;
+    private List<String> onlinePlatformUrls;
+    private List<Map<String, Object>> outputFiles;
+    private String schemaVersion;
+    private String shell;
+    private List<Map<String, Object>> tests;
+    private String toolDoi;
+    private String toolVersion;
+    private String url;
+    Object inputId;
+    Object outputId;
+    Object inputType = new HashMap<>();
+    Object inputValueKey = new HashMap<>();
+    Object outputPathTemplate = new HashMap<>();
+    Object inputOptional = new HashMap<>();
 
-        HashMap<Integer, String> inputIdList = new HashMap<Integer, String>();
-        HashMap<Integer, String> outputIdList = new HashMap<Integer, String>();
-        HashMap<String, String> inputTypelist = new HashMap<String, String>();
-        HashMap<String, String> inputValueKeylist = new HashMap<String, String>();
-        HashMap<String, String> outputPathTemplateList = new HashMap<String, String>();
-        BoutiquesObjectParser boutiquesObjectParser;
-        Map<String, String> crossMap = new HashMap<>();
-        Map<String, String> dotMap = new HashMap<>();
-        private Set<String> crossSet = new HashSet<>();
-        private Set<String> dotSet = new HashSet<>();
-        private Set<String> containerSet = new HashSet<>();
-        private Set<String> inputOptionalSet = new HashSet<>();
+    HashMap<Integer, String> inputIdList = new HashMap<Integer, String>();
+    HashMap<Integer, String> outputIdList = new HashMap<Integer, String>();
+    HashMap<String, String> inputTypelist = new HashMap<String, String>();
+    HashMap<String, String> inputValueKeylist = new HashMap<String, String>();
+    HashMap<String, String> outputPathTemplateList = new HashMap<String, String>();
+    BoutiquesObjectParser boutiquesObjectParser;
+    Map<String, String> dotMap = new HashMap<>();
+    private Set<String> dotSet = new HashSet<>();
+    private Set<String> crossSet = new HashSet<>();
+    private Set<String> containerSet = new HashSet<>();
+    private Set<String> inputOptionalSet = new HashSet<>();
     
         @JsonProperty("author")
         public String getAuthor() {
@@ -76,16 +74,38 @@ public class BoutiquesEntities {
             //System.out.println("command-line:"+commandLine);
             this.commandLine = commandLine;
         }
-    
+
         @JsonProperty("container-image")
-        public ToolContainerImage getContainerImage() {
+        public void setContainerImage(Map<String, Object> containerImageMap) {
+            if (containerImageMap == null) {
+                return; // Return early if containerImageMap is null
+            }
+    
+            this.containerImage = (String) containerImageMap.get("image");
+            this.containerIndex = (String) containerImageMap.get("index");
+            this.containerType = (String) containerImageMap.get("type");
+            this.containerOpts = (String) containerImageMap.get("container-opts");
+            
+            // Add the container image path to the containerSet
+            if (this.containerImage != null) {
+                containerSet.add(this.containerImage);
+            }
+        }
+    
+        public String getContainerImage() {
             return containerImage;
         }
     
-        @JsonProperty("container-image")
-        public void setContainerImage(ToolContainerImage containerImage) {
-            //System.out.println("container-image:"+containerImage);
-            this.containerImage = containerImage;
+        public String getContainerIndex() {
+            return containerIndex;
+        }
+    
+        public String getContainerType() {
+            return containerType;
+        }
+    
+        public String getContainerOpts() {
+            return containerOpts;
         }
     
         @JsonProperty("custom")
@@ -130,18 +150,6 @@ public class BoutiquesEntities {
             return dotSet;
         }
 
-    
-        @JsonProperty("deprecated-by-doi")
-        public ToolDeprecatedByDoi getDeprecatedByDoi() {
-            return deprecatedByDoi;
-        }
-    
-        @JsonProperty("deprecated-by-doi")
-        public void setDeprecatedByDoi(ToolDeprecatedByDoi deprecatedByDoi) {
-            //System.out.println("deprecated-by-doi:"+deprecatedByDoi);
-            this.deprecatedByDoi = deprecatedByDoi;
-        }
-    
         @JsonProperty("description")
         public String getDescription() {
             return description;
@@ -251,19 +259,8 @@ public class BoutiquesEntities {
             return inputValueKeylist;
         }
 
-        public Set<String> getInputOptional(){
+        public Set<String> getInputOptional(){ //change the name
             return inputOptionalSet;
-        }
-    
-        @JsonProperty("invocation-schema")
-        public ToolInvocationSchema getInvocationSchema() {
-            return invocationSchema;
-        }
-    
-        @JsonProperty("invocation-schema")
-        public void setInvocationSchema(ToolInvocationSchema invocationSchema) {
-            //System.out.println("invocation-schema:"+invocationSchema);
-            this.invocationSchema = invocationSchema;
         }
     
         @JsonProperty("name")
@@ -338,29 +335,7 @@ public class BoutiquesEntities {
         public void setShell(String shell) {
             //System.out.println("shell:"+shell);
             this.shell = shell;
-        }
-    
-        @JsonProperty("suggested-resources")
-        public ToolSuggestedResources getSuggestedResources() {
-            return suggestedResources;
-        }
-    
-        @JsonProperty("suggested-resources")
-        public void setSuggestedResources(ToolSuggestedResources suggestedResources) {
-            //System.out.println("suggested-resources:"+suggestedResources);
-            this.suggestedResources = suggestedResources;
-        }
-    
-        @JsonProperty("tags")
-        public ToolTags getTags() {
-            return tags;
-        }
-    
-        @JsonProperty("tags")
-        public void setTags(ToolTags tags) {
-            //System.out.println("tags:"+tags);
-            this.tags = tags;
-        }
+        }    
     
         @JsonProperty("tests")
         public List<Map<String, Object>> getTests() {
@@ -405,32 +380,4 @@ public class BoutiquesEntities {
             //System.out.println("url:"+url);
             this.url = url;
         }
-    
-        // Define getter and setter methods for other fields as needed
     }
-    
-    class ToolContainerImage {
-        // Define fields for container-image, if needed
-    }
-    
-    class ToolCustom {
-        // Define fields for custom, if needed
-    }
-    
-    class ToolDeprecatedByDoi {
-        // Define fields for deprecated-by-doi, if needed
-    }
-    
-    class ToolInvocationSchema {
-        // Define fields for invocation-schema, if needed
-    }
-    
-    class ToolSuggestedResources {
-        // Define fields for suggested-resources, if needed
-    }
-    
-    class ToolTags {
-        // Define fields for tags, if needed
-    }
-    
-    // Define other nested classes for complex types as needed

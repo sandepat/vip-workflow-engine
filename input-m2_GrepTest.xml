@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inputdata>
+<source name="file" type="File">
+<array>
+<item><tag name="Group" value="0"/>file://mnt/c/Users/patil/projects/vip-workflow-engine/grep.json</item>
+</array>
+</source>
+<source name="flag" type="Flag">
+<array>
+<item><tag name="Group" value="0"/>false</item>
+</array>
+</source>
+<source name="sleepTime" type="Number">
+<array>
+<item><tag name="Group" value="0"/>0</item>
+</array>
+</source>
+<source name="text" type="String">
+<array>
+<item><tag name="Group" value="0"/>text1</item>
+</array>
+</source>
+<source name="results-directory" type="String">
+<array>
+<item><tag name="Group" value="0"/>file://mnt/c/Users/patil/projects/vip-workflow-engine/output/</item>
+</array>
+</source>
+</inputdata>

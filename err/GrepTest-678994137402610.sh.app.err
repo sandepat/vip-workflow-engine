@@ -1,0 +1,33 @@
+./sh/GrepTest-678994137402610.sh: line 891: /cvmfs/biomed.egi.eu/vip/virtualenv/bin/bosh: No such file or directory
+Error in sitecustomize; set PYTHONVERBOSE for traceback:
+AttributeError: module 'sys' has no attribute 'setdefaultencoding'
+Traceback (most recent call last):
+  File "/home/patil/.local/lib/python3.10/site-packages/boutiques/util/utils.py", line 59, in loadJson
+    return OrderedDict(json.loads(userInput,
+  File "/home/patil/.local/lib/python3.10/site-packages/simplejson/__init__.py", line 542, in loads
+    return cls(encoding=encoding, **kw).decode(s)
+  File "/home/patil/.local/lib/python3.10/site-packages/simplejson/decoder.py", line 372, in decode
+    obj, end = self.raw_decode(s)
+  File "/home/patil/.local/lib/python3.10/site-packages/simplejson/decoder.py", line 402, in raw_decode
+    return self.scan_once(s, idx=_w(s, idx).end())
+simplejson.errors.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/patil/.local/bin/bosh", line 8, in <module>
+    sys.exit(bosh())
+  File "/home/patil/.local/lib/python3.10/site-packages/boutiques/bosh.py", line 452, in bosh
+    out = execute(*params)
+  File "/home/patil/.local/lib/python3.10/site-packages/boutiques/bosh.py", line 92, in execute
+    valid = invocation(*arguments)
+  File "/home/patil/.local/lib/python3.10/site-packages/boutiques/bosh.py", line 254, in invocation
+    validate(*arguments)
+  File "/home/patil/.local/lib/python3.10/site-packages/boutiques/bosh.py", line 58, in validate
+    descriptor = loadJson(results.descriptor, sandbox=results.sandbox)
+  File "/home/patil/.local/lib/python3.10/site-packages/boutiques/util/utils.py", line 62, in loadJson
+    raise_error(LoadError, e)
+  File "/home/patil/.local/lib/python3.10/site-packages/boutiques/logger.py", line 9, in raise_error
+    raise error_class("[ ERROR ] {0}"
+boutiques.util.utils.LoadError: [ ERROR ] Cannot parse input ../workflow.json: file not found, invalid Zenodo ID, or invalid JSON object
+[ ERROR - Wed 28 Aug 12:13:04 CEST 2024 ] Exiting with return value 6

@@ -75,6 +75,7 @@ public class GaswMonitor extends Thread {
                         failedJobsNumber++;
                     }
                     List<URI> uploadedResults = gaswOutput.getUploadedResults();
+                    System.out.println("Uploaded resultsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA: " + uploadedResults);
                     if (uploadedResults != null) {
                         workflowsdb.persistOutputs(workflowId, outputBoutiquesId, uploadedResults);
                     }
@@ -82,10 +83,11 @@ public class GaswMonitor extends Thread {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                System.out.println("EEEEEEEEEEEEEEEEEE" + gaswOutput.getUploadedResults());
             }
             finishedJobsNumber += finishedJobs.size();
             try {
-                workflowsdb.persistProcessors(workflowId, applicationName, sizeOfInputs-finishedJobsNumber, successfulJobsNumber, failedJobsNumber);
+               workflowsdb.persistProcessors(workflowId, applicationName, sizeOfInputs-finishedJobsNumber, successfulJobsNumber, failedJobsNumber);
             } catch (Exception e) {
                 e.printStackTrace();
             }
