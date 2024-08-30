@@ -25,5 +25,5 @@ build/
 *.log
 
 # Ignore test case
-input-m2_GrepTest.xml
-GrepTest.json
+/input-m2_GrepTest.xml
+/GrepTest.json
