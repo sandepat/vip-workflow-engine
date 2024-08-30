@@ -23,3 +23,7 @@ build/
 
 # Ignore logs
 *.log
+
+# Ignore test case
+input-m2_GrepTest.xml
+GrepTest.json
