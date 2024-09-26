@@ -1,26 +1,4 @@
-# Extract filename without extension
-filename=$(basename "${0%.sh}")
-
-# Create the directories if they don't already exist
-mkdir -p inv
-mkdir -p config
-
-# Copy the files to their respective directories
-cp "${filename}-configuration.sh" config/
-cp "${filename}-invocation.json" inv/
-
-echo "Files copied successfully."
-
-# Path to the configuration JSON file
-configurationFile="config/$filename-configuration.sh"
-
-# Source the configuration file
-if [ -f "$configurationFile" ]; then
-    source "$configurationFile"
-else
-    echo "Configuration file $configurationFile not found!"
-    exit 1
-fi
+#!/bin/bash
 
 function info {
   local D=`date`
@@ -47,6 +25,37 @@ function stopLog {
   echo "</${logName}>" >&1
   echo "</${logName}>" >&2
 }
+
+# Extract filename without extension
+filename=$(basename "${0%.sh}")
+
+# Check if directories already exist
+if [[ ! -d "config" || ! -d "inv" ]]; then
+    # Create the directories if they don't already exist
+    mkdir -p inv
+    mkdir -p config
+
+    # Copy the files to their respective directories after creation
+    cp "${filename}-configuration.sh" config/
+    echo "Copied ${filename}-configuration.sh to config/"
+    cp "${filename}-invocation.json" inv/
+    echo "Copied ${filename}-invocation.json to inv/"
+
+else
+    echo "Directories already exist. Skipping copy."
+fi
+
+
+# Path to the configuration JSON file
+configurationFile="config/$filename-configuration.sh"
+
+# Source the configuration file
+if [ -f "$configurationFile" ]; then
+    source "$configurationFile"
+else
+    echo "Configuration file $configurationFile not found!"
+    exit 1
+fi
 
 function download_udocker {
   #installation of udocker
@@ -206,6 +215,17 @@ REFRESH_PID=""
 # shanoir:/path/to/file/filename?&refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lk....&keycloak_client_id=....&keycloak_client_secret=...
 # The mandatory arguments are: keycloak_client_id, keycloak_client_secret.
 #
+
+
+function stopRefreshingToken {
+    if [ "${REFRESH_PID}" != "" ]; then
+        info "Killing background refresh token process with id : ${REFRESH_PID}"
+        kill -9 "${REFRESH_PID}"
+        REFRESH_PID=""
+        echo "refresh token process ended !"
+    fi
+}
+
 function refresh_token {
     touch "$SHANOIR_TOKEN_LOCATION"
     touch "$SHANOIR_REFRESH_TOKEN_LOCATION"
@@ -252,18 +272,10 @@ function refresh_token {
     done
 
 }
+
 #
 # Cleanup method: stop the refreshing process
 #
-
-function stopRefreshingToken {
-    if [ "${REFRESH_PID}" != "" ]; then
-        info "Killing background refresh token process with id : ${REFRESH_PID}"
-        kill -9 "${REFRESH_PID}"
-        REFRESH_PID=""
-        echo "refresh token process ended !"
-    fi
-}
 #
 # The refresh token may take some time, this method is for that purpose
 # and it exit the program if it's timed out
@@ -636,6 +648,7 @@ getAndRemoveSE() {
 chooseRandomSE() {
     nSEs
     local n=$?
+    n="CPPM-disk"
     if [ "$n" = "0" ]; then
         info "SE list is empty"
         RESULT=""
@@ -672,6 +685,7 @@ uploadLfnFile() {
     local totalTimeout=$((timeout + srmTimeout + sendReceiveTimeout))
 
     local OPTS="-o /Resources/StorageElements/GFAL_TIMEOUT=${totalTimeout}"
+    info "choosing randon SE"
     chooseRandomSE
     local DEST=${RESULT}
     local done=0
@@ -793,7 +807,6 @@ function upload {
     local ID=$2
     local NREP=$3
     local TEST=$4
-
     startLog file_upload uri="${URI}"
     
     # The pattern must NOT be put between quotation marks.
@@ -1059,24 +1072,13 @@ fi
 # Create a file to disable watchdog CPU wallclock check
 touch ../DISABLE_WATCHDOG_CPU_WALLCLOCK_CHECK
 
-###################################################################################
-# Remove square brackets and leading/trailing whitespace from downloads
-downloads="${downloads#[}"
-downloads="${downloads%]}"
-downloads="${downloads// /}"
-
-IFS=',' read -ra download_array <<< "$downloads"
-
 # Iterate over each URL in the 'downloads' array
-for download in "${download_array[@]}"; do
-    # Remove leading and trailing whitespace
-    download="$(echo -e "${download}" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')"
+for download in "${downloads[@]}"; do
     # Process the URL using downloadURI function
     downloadURI "$download"
     # Print the processed URL
     echo "$download"
 done
-
 
 # Change permissions of all files in the directory
 chmod 755 *
@@ -1089,15 +1091,7 @@ stopLog inputs_download
 
 
 startLog application_environment
-echo "$variables"
 
-# Iterate through each variable in $variables and export them
-# Assuming $variables is a string containing key-value pairs separated by space
-for variable in $variables; do
-    key=$(echo "$variable" | cut -d'=' -f1)
-    value=$(echo "$variable" | cut -d'=' -f2)
-    export "$key"="$value"
-done
 
 # Stop log for application environment
 stopLog application_environment
@@ -1126,14 +1120,11 @@ fi
 # Export current directory to LD_LIBRARY_PATH
 export LD_LIBRARY_PATH=${PWD}:${LD_LIBRARY_PATH}
 
-#####
-# Temporary fix
-jsonFileName="workflow.json"
-######
+# copy the workflow file in the execution directory
+cp ../workflow.json ./$workflowFile
 
-echo "import sys; sys.setdefaultencoding(\"UTF8\")" > sitecustomize.py #breaking for Python3. Need review
 # Execute the command
-PYTHONPATH=".:$PYTHONPATH" $BOSHEXEC exec launch $jsonFileName ../inv/$invocationJson -v $PWD/../cache:$PWD/../cache
+PYTHONPATH=".:$PYTHONPATH" $BOSHEXEC exec launch $workflowFile ../inv/$invocationJson -v $PWD/../cache:$PWD/../cache
 
 # Check if execution was successful
 if [ $? -ne 0 ]; then
@@ -1154,7 +1145,7 @@ info "Execution time was $(expr ${BEFOREUPLOAD} - ${AFTERDOWNLOAD})s"
 ####################################################################################################
 
 provenanceFile="$BASEDIR/$DIRNAME.sh.provenance.json"
-echo $provenanceFile THIS IS FOR DEBUG ONLY
+echo $provenanceFile THIS IS FOR DEBUG and TESTs ONLY
 copyProvenanceFile "$provenanceFile"
 
 startLog results_upload
@@ -1165,13 +1156,13 @@ if [[ $minorStatusEnabled == true && $serviceCall ]]; then
 fi
 
 
-# Extract the file names and store them in a bash array
-file_names=($(jq -r '.["public-output"]["output-files"] | to_entries[] | .value["file-name"]' "$provenanceFile"))
+# Extract the file names and store them in a bash array (first method is commented out since jq has imcomplete support in some linux distributions)
+file_names=($(jq -r '.["public-output"]["output-files"] | to_entries[] | .value["file-name"]' "$provenanceFile")) 
+#file_names=($(grep -o '"file-name": *"[^"]*"' "$provenanceFile" | awk -F': ' '{print $2}' | tr -d '"' | tr '\n' ' ')) //experimental
 
 # Remove square brackets from uploadURI (we assume UploadURI will always be a single string)
 uploadURI=$(echo "$uploadURI" | sed 's/^\[//; s/\]$//')
 
-echo EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
 echo $uploadURI
 
 #  Check if uploadURI starts with "file:/"
@@ -1205,7 +1196,7 @@ else
         random_string=$(tr -dc '[:alpha:]' < /dev/urandom 2>/dev/null | head -c 32)
         
         # Execute the upload command
-        upload "$upload_path" "$random_string" "$numberOfReplicas" false
+        upload "lfn://$upload_path" "$random_string" "$numberOfReplicas" false
     done
 fi
 

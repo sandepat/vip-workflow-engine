@@ -37,7 +37,7 @@
       <!--          <dependency>
          <groupId>com.github.sandepat</groupId>
          <artifactId>GASW</artifactId>
-         <version>a484c983f5</version>
+         <version>b1c1e612a5</version>
      </dependency>
 
         <dependency>
@@ -50,13 +50,8 @@
         <dependency>
          <groupId>com.github.sandepat</groupId>
          <artifactId>GASW</artifactId>
-         <version>248abc3250</version>
+         <version>5ff356fd8a</version>
      </dependency>
-      <dependency>
-         <groupId>com.googlecode.json-simple</groupId>
-         <artifactId>json-simple</artifactId>
-         <version>1.1.1</version>
-      </dependency>
       <dependency>
          <groupId>com.google.code.gson</groupId>
          <artifactId>gson</artifactId>

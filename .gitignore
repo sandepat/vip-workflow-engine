@@ -27,3 +27,6 @@ build/
 # Ignore test case
 /input-m2_GrepTest.xml
 /GrepTest.json
+
+# Ignore resources
+src/main/resources/

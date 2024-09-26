@@ -9,7 +9,6 @@ import java.util.Set;
 
 import fr.insalyon.creatis.gasw.Gasw;
 import fr.insalyon.creatis.gasw.GaswInput;
-import fr.insalyon.creatis.gasw.parser.GaswParser;
 import fr.insalyon.creatis.moteurlite.boutiquesParser.BoutiquesEntities;
 import fr.insalyon.creatis.moteurlite.boutiquesParser.BoutiquesService;
 import fr.insalyon.creatis.moteurlite.inputsParser.ParseInputsFile;
@@ -36,6 +35,7 @@ public class MoteurLite {
     List<Map<String, String>> jsonIterations;
     private Map<String, String> inputType;
     private Map<String, String> resultsDirectory;
+    private List<Map<String, String>> inputMap;
     private String workflowId;
 
     public static void main(String[] args) throws Exception {
@@ -90,8 +90,6 @@ public class MoteurLite {
         BoutiquesEntities boutiquesEntities = boutiquesService.parseFile(boutiquesFilePath);
         executableName = boutiquesService.getNameOfBoutiquesFile(boutiquesEntities);
         applicationName = boutiquesService.getApplicationName(boutiquesEntities);
-        inputBoutiquesId = boutiquesService.getInputIdOfBoutiquesFile(boutiquesEntities);
-        outputBoutiquesId = boutiquesService.getOutputIdOfBoutiquesFile(boutiquesEntities);
         inputType = boutiquesService.getInputTypeOfBoutiquesFile(boutiquesEntities);
         Set<String> crossMap = boutiquesService.getCrossMap(boutiquesEntities);
         Set<String> dotMap = boutiquesService.getDotMap(boutiquesEntities);
@@ -101,12 +99,15 @@ public class MoteurLite {
         ParseInputsFile inputsParser = new ParseInputsFile(inputsFilePath);
         List<Map<String, String>> inputData = inputsParser.getInputData();
         resultsDirectory = inputsParser.getResultDirectory();
+        inputMap = inputsParser.getInputData();
+        
 
         // Set workflowsdb
         workflowsdb.persistInputs(workflowId, inputData, inputType, resultsDirectory);
 
         // Set iteration strategy
         iterationStrategy.IterationStratergy(inputData, resultsDirectory, crossMap, dotMap, inputOptional);
+
         jsonIterations = iterationStrategy.getJsonIterations();
         sizeOfInputs = jsonIterations.size();
     }
@@ -123,8 +124,11 @@ public class MoteurLite {
                 }
             }
 
-            List<URI> downloadFiles = ParseInputsFile.getDownloadFiles(inputsMap);
-            GaswParser gaswParser = new GaswParser();
+             // Extract the value of result-directory from resultsDirectory map
+            List<URI> downloads = ParseInputsFile.getDownloadFiles(inputsMap);
+            URI resultsDirectoryURI = new URI(resultsDirectory.get("results-directory"));
+            
+            //String applicationFilePath = ParseInputsFile.getApplicationFilePath(inputsMap);
             String invocationString = CreateInvocation.convertMapToJson(invocation, inputType);
             String jobId = applicationName + "-" + System.nanoTime() + ".sh";
 
@@ -133,17 +137,8 @@ public class MoteurLite {
             if (!boutiquesFile.isAbsolute()) {
                 boutiquesFilePath = boutiquesFile.getAbsolutePath();
             }
-
-            // Check if boutiquesFilePath starts with /var/www/ and add file:// prefix if necessary
-            if (boutiquesFilePath.startsWith("/var/www/")) {
-                boutiquesFilePath = "file:/" + boutiquesFilePath;
-            }
-            System.out.println(("Boutiques file path: " + boutiquesFilePath));
-
-            GaswInput gaswInput = gaswParser.getGaswInput(applicationName, inputsMap, executableName,
-                    inputBoutiquesId, outputBoutiquesId, invocationString, resultsDirectory, jobId, downloadFiles, boutiquesFilePath);
+            GaswInput gaswInput = new GaswInput(applicationName, executableName, downloads, resultsDirectoryURI, invocationString, jobId);
             gasw.submit(gaswInput);
-            System.out.println("Job launched: " + jobId);
         }
     }
 }

@@ -9,6 +9,12 @@ import java.util.Set;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
+/**
+ * 
+ * Author: Sandesh Patil [https://github.com/sandepat]
+ * 
+ */
+
 public class BoutiquesEntities {
     private String author;
     private String commandLine;
@@ -16,7 +22,6 @@ public class BoutiquesEntities {
     private String containerIndex;
     private String containerType;
     private String containerOpts;
-    //private ToolCustom custom;
     private Map<String, Object> custom;
     private String description;
     private String descriptorUrl;
@@ -60,7 +65,6 @@ public class BoutiquesEntities {
     
         @JsonProperty("author")
         public void setAuthor(String author) {
-            //System.out.println("author:" + author);
             this.author = author;
         }
     
@@ -71,7 +75,6 @@ public class BoutiquesEntities {
     
         @JsonProperty("command-line")
         public void setCommandLine(String commandLine) {
-            //System.out.println("command-line:"+commandLine);
             this.commandLine = commandLine;
         }
 
@@ -161,7 +164,6 @@ public class BoutiquesEntities {
     
         @JsonProperty("description")
         public void setDescription(String description) {
-            //System.out.println("description:"+description);
             this.description = description;
         }
     
@@ -172,7 +174,6 @@ public class BoutiquesEntities {
     
         @JsonProperty("descriptor-url")
         public void setDescriptorUrl(String descriptorUrl) {
-            //System.out.println("descriptor-url:"+descriptorUrl);
             this.descriptorUrl = descriptorUrl;
         }
     
@@ -183,7 +184,6 @@ public class BoutiquesEntities {
     
         @JsonProperty("doi")
         public void setDoi(String doi) {
-            //System.out.println("doi:"+doi);
             this.doi = doi;
         }
     
@@ -194,7 +194,6 @@ public class BoutiquesEntities {
     
         @JsonSetter("environment-variables")
         public void setEnvironmentVariables(List<Map<String, Object>> environmentVariables) {
-            //System.out.println("environment-variables:"+environmentVariables);
             this.environmentVariables = environmentVariables;
         }
     
@@ -205,7 +204,6 @@ public class BoutiquesEntities {
     
         @JsonSetter("error-codes")
         public void setErrorCodes(List<Map<String, Object>> errorCodes) {
-            //System.out.println("error-codes:"+errorCodes);
             this.errorCodes = errorCodes;
         }
     
@@ -216,7 +214,7 @@ public class BoutiquesEntities {
     
         @JsonSetter("groups")
         public void setGroups(List<Map<String, Object>> groups) {
-            //System.out.println("groups:"+groups);
+
             this.groups = groups;
         }
     
@@ -259,7 +257,7 @@ public class BoutiquesEntities {
             return inputValueKeylist;
         }
 
-        public Set<String> getInputOptional(){ //change the name
+        public Set<String> getInputOptional(){ 
             return inputOptionalSet;
         }
     
@@ -270,7 +268,6 @@ public class BoutiquesEntities {
     
         @JsonProperty("name")
         public void setName(String name) {
-            //System.out.println("name:"+name);
             this.name = name;
         }
     
@@ -281,7 +278,6 @@ public class BoutiquesEntities {
     
         @JsonSetter("online-platform-urls")
         public void setOnlinePlatformUrls(List<String> onlinePlatformUrls) {
-            //System.out.println("online-platform-urls:"+onlinePlatformUrls);
             this.onlinePlatformUrls = onlinePlatformUrls;
         }
     
@@ -322,7 +318,6 @@ public class BoutiquesEntities {
     
         @JsonProperty("schema-version")
         public void setSchemaVersion(String schemaVersion) {
-            //System.out.println("schema-version:"+schemaVersion);
             this.schemaVersion = schemaVersion;
         }
     
@@ -333,7 +328,6 @@ public class BoutiquesEntities {
     
         @JsonProperty("shell")
         public void setShell(String shell) {
-            //System.out.println("shell:"+shell);
             this.shell = shell;
         }    
     
@@ -345,7 +339,6 @@ public class BoutiquesEntities {
         @JsonSetter("tests")
         public void setTests(List<Map<String, Object>> tests) {
             this.tests = tests;
-            //System.out.println("tests:"+tests);
         }
     
         @JsonProperty("tool-doi")
@@ -355,7 +348,6 @@ public class BoutiquesEntities {
     
         @JsonProperty("tool-doi")
         public void setToolDoi(String toolDoi) {
-            //System.out.println("tool-doi:"+toolDoi);
             this.toolDoi = toolDoi;
         }
     
@@ -366,7 +358,6 @@ public class BoutiquesEntities {
     
         @JsonProperty("tool-version")
         public void setToolVersion(String toolVersion) {
-            //System.out.println("tool-version:"+toolVersion);
             this.toolVersion = toolVersion;
         }
     
@@ -377,7 +368,6 @@ public class BoutiquesEntities {
     
         @JsonProperty("url")
         public void setUrl(String url) {
-            //System.out.println("url:"+url);
             this.url = url;
         }
     }

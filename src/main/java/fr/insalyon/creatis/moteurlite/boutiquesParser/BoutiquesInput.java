@@ -6,6 +6,12 @@ import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * 
+ * Author: Sandesh Patil [https://github.com/sandepat]
+ * 
+ */
+
 public class BoutiquesInput {
    private String commandLineFlag;
    private String commandLineFlagSeparator;
