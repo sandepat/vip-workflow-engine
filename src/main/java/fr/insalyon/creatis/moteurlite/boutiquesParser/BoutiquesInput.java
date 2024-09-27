@@ -67,7 +67,6 @@ public class BoutiquesInput {
    }
 
    public void setDefaultValue(Object defaultValue) {
-      //System.out.println("default-value:" + defaultValue);
       this.defaultValue = defaultValue;
    }
 
@@ -77,7 +76,6 @@ public class BoutiquesInput {
    }
 
    public void setDescription(String description) {
-      //System.out.println("description:" + description);
       this.description = description;
    }
 
@@ -87,7 +85,6 @@ public class BoutiquesInput {
    }
 
    public void setDisablesInputs(List<String> disablesInputs) {
-      //System.out.println("disables-inputs:" + disablesInputs);
       this.disablesInputs = disablesInputs;
    }
 
@@ -97,7 +94,6 @@ public class BoutiquesInput {
    }
 
    public void setExclusiveMaximum(Boolean exclusiveMaximum) {
-      //System.out.println("exclusive-maximum:" + exclusiveMaximum);
       this.exclusiveMaximum = exclusiveMaximum;
    }
 
@@ -107,7 +103,6 @@ public class BoutiquesInput {
    }
 
    public void setExclusiveMinimum(Boolean exclusiveMinimum) {
-      //System.out.println("exclusive-minimum:" + exclusiveMinimum);
       this.exclusiveMinimum = exclusiveMinimum;
    }
 
@@ -117,7 +112,6 @@ public class BoutiquesInput {
    }
 
    public void setId(String id) {
-      //System.out.println("id:" + id);
       this.id = id;
    }
 
@@ -127,7 +121,6 @@ public class BoutiquesInput {
    }
 
    public void setIsInteger(Boolean isInteger) {
-      //System.out.println("integer:" + isInteger);
       this.isInteger = isInteger;
    }
 
@@ -137,7 +130,6 @@ public class BoutiquesInput {
    }
 
    public void setIsList(Boolean isList) {
-      //System.out.println("list:" + isList);
       this.isList = isList;
    }
 
@@ -147,7 +139,6 @@ public class BoutiquesInput {
    }
 
    public void setListSeparator(String listSeparator) {
-      //System.out.println("list-separator:" + listSeparator);
       this.listSeparator = listSeparator;
    }
 
@@ -157,7 +148,6 @@ public class BoutiquesInput {
    }
 
    public void setMaxListEntries(Number maxListEntries) {
-      //System.out.println("max-list-entries:" + maxListEntries);
       this.maxListEntries = maxListEntries;
    }
 
@@ -167,7 +157,6 @@ public class BoutiquesInput {
    }
 
    public void setMaximum(Number maximum) {
-      //System.out.println("maximum:" + maximum);
       this.maximum = maximum;
    }
 
@@ -177,7 +166,6 @@ public class BoutiquesInput {
    }
 
    public void setMinListEntries(Number minListEntries) {
-      //System.out.println("min-list-entries:" + minListEntries);
       this.minListEntries = minListEntries;
    }
 
@@ -187,7 +175,6 @@ public class BoutiquesInput {
    }
 
    public void setMinimum(Number minimum) {
-      //System.out.println("minimum:" + minimum);
       this.minimum = minimum;
    }
 
@@ -197,7 +184,6 @@ public class BoutiquesInput {
    }
 
    public void setName(String name) {
-      //System.out.println("name:" + name);
       this.name = name;
    }
 
@@ -207,7 +193,6 @@ public class BoutiquesInput {
    }
 
    public void setOptional(Boolean optional) {
-      //System.out.println("optional:" + optional);
       this.optional = optional;
    }
 
@@ -217,7 +202,6 @@ public class BoutiquesInput {
    }
 
    public void setRequiresInputs(List<String> requiresInputs) {
-      //System.out.println("requires-inputs:" + requiresInputs);
       this.requiresInputs = requiresInputs;
    }
 
@@ -227,7 +211,6 @@ public class BoutiquesInput {
    }
 
    public void setType(String type) {
-      //System.out.println("type:" + type);
       this.type = type;
    }
 
@@ -237,7 +220,6 @@ public class BoutiquesInput {
    }
 
    public void setUsesAbsolutePath(Boolean usesAbsolutePath) {
-      //System.out.println("uses-absolute-path:" + usesAbsolutePath);
       this.usesAbsolutePath = usesAbsolutePath;
    }
 
@@ -247,7 +229,6 @@ public class BoutiquesInput {
    }
 
    public void setValueChoices(List<Object> valueChoices) {
-      //System.out.println("value-choices:" + valueChoices);
       this.valueChoices = valueChoices;
    }
 
@@ -257,7 +238,6 @@ public class BoutiquesInput {
    }
 
    public void setValueDisables(Map<String, Object> valueDisables) {
-      //System.out.println("value-disables:" + valueDisables);
       this.valueDisables = valueDisables;
    }
 
@@ -267,7 +247,6 @@ public class BoutiquesInput {
    }
 
    public void setValueKey(String valueKey) {
-      //System.out.println("value-key:" + valueKey);
       this.valueKey = valueKey;
    }
 
@@ -277,7 +256,6 @@ public class BoutiquesInput {
    }
 
    public void setValueRequires(Map<String, Object> valueRequires) {
-      //System.out.println("value-requires:" + valueRequires);
       this.valueRequires = valueRequires;
    }
 }

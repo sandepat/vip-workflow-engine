@@ -6,6 +6,12 @@ import java.util.Map;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+/**
+ * 
+ * @author Sandesh Patil [https://github.com/sandepat]
+ * 
+ */
+
 public class BoutiquesObjectParser {
 
     public BoutiquesObjectParser(List<Map<String, Object>> inputs, Class BoutiquesClass)
@@ -14,9 +20,6 @@ public class BoutiquesObjectParser {
             try {
                 String jsonArray = mapper.writeValueAsString(inputs);
                 jsonArray = jsonArray.substring(1, jsonArray.length()-1);
-                //jsonArray = jsonArray.replaceAll("\\[", "").replaceAll("\\]","");
-
-                //JavaType javaType = mapper.getTypeFactory().constructParametricType(JsonResponse.class, User.class);
                 mapper.readValue(jsonArray, BoutiquesClass); 
 
             } catch (JsonProcessingException e) {

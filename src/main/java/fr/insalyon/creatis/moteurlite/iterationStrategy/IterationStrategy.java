@@ -61,7 +61,6 @@ public class IterationStrategy {
             }
         }
         List<Map<String, String>> jsonCombinations = JsonIteration.jsonIteration(valuesMap, crossJson, dotJson, inputOptional);
-        //System.out.println("json" + jsonCombinations);
         addResultsDir(jsonCombinations, resultDir);
         return jsonCombinations;
     }

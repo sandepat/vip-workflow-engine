@@ -2,6 +2,12 @@ package fr.insalyon.creatis.moteurlite.inputsParser;
 
 import java.net.URI;
 
+/**
+ * 
+ * @author Sandesh Patil [https://github.com/sandepat]
+ * 
+ */
+
 public class InputDownloads {
     private static boolean endsWithExtension(String path) {
         return path.matches(".*\\.[^.]+$");

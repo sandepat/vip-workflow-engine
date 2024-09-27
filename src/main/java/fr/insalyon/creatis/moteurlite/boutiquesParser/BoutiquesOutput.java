@@ -1,9 +1,14 @@
-// Source code is decompiled from a .class file using FernFlower decompiler.
 package fr.insalyon.creatis.moteurlite.boutiquesParser;
 
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+/**
+ * 
+ * @author Sandesh Patil [https://github.com/sandepat]
+ * 
+ */
 
 public class BoutiquesOutput {
    private String commandLineFlag;

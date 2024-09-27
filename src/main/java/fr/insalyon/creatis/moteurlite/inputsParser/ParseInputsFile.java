@@ -37,7 +37,6 @@ public class ParseInputsFile {
                     }
                     downloads.add(uri);
                 } catch (Exception e) {
-                    // Handle URI parsing exception
                     System.err.println("Error parsing URI: " + entry.getValue());
                 }
             }

@@ -1,5 +1,10 @@
-// Source code is decompiled from a .class file using FernFlower decompiler.
 package fr.insalyon.creatis.moteurlite.boutiquesParser;
+
+/**
+ * 
+ * @author Sandesh Patil [https://github.com/sandepat]
+ * 
+ */
 
 public class InvalidBoutiquesDescriptorException extends Exception {
    public InvalidBoutiquesDescriptorException(String message) {

@@ -257,7 +257,7 @@ public class BoutiquesEntities {
             return inputValueKeylist;
         }
 
-        public Set<String> getInputOptional(){ 
+        public Set<String> getInputOptional(){
             return inputOptionalSet;
         }
     
@@ -288,10 +288,8 @@ public class BoutiquesEntities {
     
         @JsonSetter("output-files")
         public void setOutputFiles(List<Map<String, Object>> outputFiles) {
-            //System.out.println("output-files:"+outputFiles);
 
             for(int outputNo =0; outputNo < outputFiles.size();outputNo++){
-                //System.out.println("outputs:"+ outputNo+ outputFiles.get(outputNo));
                 boutiquesObjectParser = new BoutiquesObjectParser(outputFiles, BoutiquesOutput.class);
                 outputId = outputFiles.get(outputNo).get("id");
                 outputIdList.put(outputNo,outputId.toString());

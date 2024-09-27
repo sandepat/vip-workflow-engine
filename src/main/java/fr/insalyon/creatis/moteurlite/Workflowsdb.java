@@ -37,7 +37,6 @@ public class Workflowsdb {
             String jobId, Integer queued, Integer completed, Integer failed)
             throws Exception {
         persistInputs(workflowId, inputData, inputType, resultsDirectory);
-        //persistOutputs(workflowId, outputData, outputName, outputDirName, resultsDirectory);
         persistProcessors(workflowId, applicationName, queued, completed, failed);
     }
 
@@ -82,30 +81,6 @@ public class Workflowsdb {
         }
     }
 
-    /*public void persistOutputs(String workflowId, HashMap<Integer, String> outputData, Map<String, String> outputName, String outputDirName, Map<String, String> resultsDirectory)
-            throws Exception {
-        WorkflowsDBDAOFactory workflowsDBDAOFactory = new WorkflowsDBDAOFactory();
-        OutputDAO outputDAO = workflowsDBDAOFactory.getOutputDAO();
-        Output output = new Output();
-        OutputID outputID = new OutputID();
-        String resultDir = resultsDirectory.get("results-directory");
-        for (Map.Entry<Integer, String> entry : outputData.entrySet()) {
-            outputID.setWorkflowID(workflowId);
-            for (Map.Entry<String, String> outputEntry : outputName.entrySet()) {
-                String outputKey = outputEntry.getKey();
-                String outputPath = outputEntry.getValue();
-                if (outputKey.equals(entry.getValue())) {
-                    outputID.setPath(resultDir + "/" + outputDirName+ "/" + outputPath);
-                    break;
-                }
-            }
-            outputID.setProcessor(entry.getValue());
-            output.setOutputID(outputID);
-            output.setType(DataType.String);
-            outputDAO.add(output);
-        }
-    }*/
-
     public void persistOutputs(String workflowId, HashMap<Integer, String> outputData, List<URI> uploadList)
     throws Exception {
         WorkflowsDBDAOFactory workflowsDBDAOFactory = new WorkflowsDBDAOFactory();
@@ -115,7 +90,7 @@ public class Workflowsdb {
         for (Map.Entry<Integer, String> entry : outputData.entrySet()) {
             outputID.setWorkflowID(workflowId);
             outputID.setProcessor(entry.getValue());
-            outputID.setPath("Test");
+            outputID.setPath("");
             output.setOutputID(outputID);
             output.setType(DataType.String);
 

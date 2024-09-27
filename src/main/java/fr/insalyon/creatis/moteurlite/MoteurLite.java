@@ -127,8 +127,7 @@ public class MoteurLite {
              // Extract the value of result-directory from resultsDirectory map
             List<URI> downloads = ParseInputsFile.getDownloadFiles(inputsMap);
             URI resultsDirectoryURI = new URI(resultsDirectory.get("results-directory"));
-            
-            //String applicationFilePath = ParseInputsFile.getApplicationFilePath(inputsMap);
+
             String invocationString = CreateInvocation.convertMapToJson(invocation, inputType);
             String jobId = applicationName + "-" + System.nanoTime() + ".sh";
 

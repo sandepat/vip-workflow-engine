@@ -14,6 +14,12 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+/**
+ * 
+ * @author Sandesh Patil [https://github.com/sandepat]
+ * 
+ */
+
 public class InputParser {
         public static Map<String, String> parseResultDir(String filePath) {
             Map<String, String> resultMap = new HashMap<>();

@@ -70,6 +70,6 @@ public class BoutiquesService {
     }
 
     public Set<String> getDotMap(BoutiquesEntities boutiquesEntities) {
-        return boutiquesEntities.getDotMap(); //call this in moteurlite
+        return boutiquesEntities.getDotMap();
     }
 }

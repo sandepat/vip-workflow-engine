@@ -7,9 +7,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * 
+ * @author Sandesh Patil [https://github.com/sandepat]
+ * 
+ */
+
 public class JsonIteration {
-    public static String ANSI_GREEN = "\u001B[32m";
-    public static String ANSI_RESET = "\u001B[0m";
 
     public static List<Map<String, String>> jsonIteration(Map<String, List<String>> inputMap, Set<String> crossKeys, Set<String> dotKeys, Set<String> inputOptional) {
         

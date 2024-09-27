@@ -9,6 +9,12 @@ import org.json.simple.parser.JSONParser;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+/**
+ * 
+ * @author Sandesh Patil [https://github.com/sandepat]
+ * 
+ */
+
 public class JsonCustomPropertyValidator {
 
     public void validateCustomProperty(String jsonString) {

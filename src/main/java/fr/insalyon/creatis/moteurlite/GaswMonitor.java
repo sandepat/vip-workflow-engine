@@ -98,7 +98,6 @@ public class GaswMonitor extends Thread {
             try {
                 workflowsdb.persistWorkflows(workflowId,finalStatus);
             } catch (Exception e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
     

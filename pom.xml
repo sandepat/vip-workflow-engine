@@ -50,7 +50,7 @@
         <dependency>
          <groupId>com.github.sandepat</groupId>
          <artifactId>GASW</artifactId>
-         <version>5ff356fd8a</version>
+         <version>aeba94bd7c</version>
      </dependency>
       <dependency>
          <groupId>com.google.code.gson</groupId>

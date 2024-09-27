@@ -5,6 +5,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 
+ * @author Sandesh Patil [https://github.com/sandepat]
+ * 
+ */
+
 public class DotIteration {
     public static List<Map<String, String>> dotIteration(Map<String, List<String>> inputMap) {
           List<Map<String, String>> combinations = new ArrayList<>();
